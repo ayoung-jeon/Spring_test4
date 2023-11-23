@@ -52,6 +52,7 @@ public class ProductService {
     }
 
     // 관심상품 조회하기
+    @Transactional(readOnly = true)
     public Page<ProductResponseDto> getProducts(User user, int page, int size, String sortBy, boolean isAsc) {
         // 클라이언트에서 반환되는 값이 참이라면 ASC 오름차순, DESC 거짓이면 내림차순
         Sort.Direction direction = isAsc ? Sort.Direction.ASC : Sort.Direction.DESC;
