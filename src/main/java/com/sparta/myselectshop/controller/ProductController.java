@@ -45,6 +45,16 @@ public class ProductController {
                 page-1, size, sortBy, isAsc);
     }
 
+    // 관심상품에 폴더 추가
+    @PostMapping("/products/{productId}/folder")
+    public void addFolder(
+            @PathVariable Long productId,
+            @RequestParam Long folderId,
+            @AuthenticationPrincipal UserDetailsImpl userDetails
+    ) {
+        productService.addFolder(productId, folderId, userDetails.getUser());
+    }
+
 //    // admin 계정 -> user들의 관심 상품들 모두 조회 가능하게 하는 기능
 //    @GetMapping("/admin/products")
 //    public List<ProductResponseDto> getAllProducts() {
